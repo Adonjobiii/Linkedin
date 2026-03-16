@@ -107,11 +107,36 @@ products = [
     }
 ]
 
-# Mock Databases
-users = {} # {email: user_data}
-orders = {} # {email: [order1, order2]}
-carts = {} # {email: [item1, item2]}
-collections = {} # {email: [product_id1, product_id2]}
+# Mock Databases with Persistence
+import json
+import os
+
+DB_FILE = 'db.json'
+
+def load_db():
+    if os.path.exists(DB_FILE):
+        try:
+            with open(DB_FILE, 'r') as f:
+                return json.load(f)
+        except:
+            pass
+    return {"users": {}, "orders": {}, "carts": {}, "collections": {}}
+
+def save_db():
+    db_data = {
+        "users": users,
+        "orders": orders,
+        "carts": carts,
+        "collections": collections
+    }
+    with open(DB_FILE, 'w') as f:
+        json.dump(db_data, f, indent=4)
+
+db = load_db()
+users = db.get("users", {})
+orders = db.get("orders", {})
+carts = db.get("carts", {})
+collections = db.get("collections", {})
 
 @app.route('/favicon.ico')
 def favicon():
@@ -184,6 +209,7 @@ def signup():
         
         # Create empty order history for new users
         orders[email] = []
+        save_db()
         
         flash('Account created successfully!', 'success')
         return redirect(url_for('profile'))
@@ -235,6 +261,7 @@ def update_profile():
     user['name'] = request.form.get('name', user['name'])
     user['phone'] = request.form.get('phone', user['phone'])
     user['address'] = request.form.get('address', user['address'])
+    save_db()
     
     flash('Profile updated successfully!', 'success')
     return {"success": True, "message": "Profile updated"}
@@ -256,6 +283,7 @@ def add_to_cart():
     
     # Check if already in cart (incrementing qty not implemented for simplicity, just add)
     carts[email].append(product)
+    save_db()
     return {"success": True, "message": f"{product['name']} added to cart", "count": len(carts[email])}
 
 @app.route('/get_cart')
@@ -281,6 +309,7 @@ def add_to_collection():
         
     if product_id not in collections[email]:
         collections[email].append(product_id)
+        save_db()
         return {"success": True, "message": "Added to your collection"}
     else:
         return {"success": False, "message": "Already in your collection"}

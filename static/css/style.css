@@ -748,47 +748,20 @@ h1, h2, h3, .logo {
     font-weight: 600;
 }
 
-/* Floating Mobile Menu - REINVENTED */
+/* Floating Mobile Menu - REINVENTED - Removed redundant code */
 .mobile-nav {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    background: rgba(15, 15, 15, 0.6);
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 40px;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--black);
     z-index: 2100;
-    display: flex !important;
+    padding: 60px 40px;
+    transition: 0.4s ease-in-out;
+    border-right: 1px solid var(--dark-gray);
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 80px 40px;
-    transform: scale(0.95) translateY(30px);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.mobile-nav.active {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-.mobile-nav a {
-    font-size: 32px;
-    font-weight: 900;
-    margin: 15px 0;
-    letter-spacing: -1px;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.mobile-nav a:hover {
-    color: white;
-    transform: scale(1.1);
 }
 
 /* Hover Floating Button Fix */
@@ -935,22 +908,10 @@ section {
     transition: var(--transition);
 }
 
-/* Mobile Sidebar */
-.mobile-nav {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 80%;
-    height: 100vh;
-    background: var(--black);
-    z-index: 2000;
-    padding: 60px 40px;
-    transition: 0.4s ease-in-out;
-    border-right: 1px solid var(--dark-gray);
-}
-
+/* Single Source of Truth for Mobile Sidebar */
 .mobile-nav.active {
     left: 0;
+    box-shadow: 20px 0 50px rgba(0,0,0,0.8);
 }
 
 .close-menu {
@@ -1081,28 +1042,34 @@ section {
 
 @media (max-width: 480px) {
     .nav-container {
-        padding: 0 15px;
-    }
-    .logo {
-        font-size: 18px;
-    }
-    .header-icons {
+        padding: 0 10px;
         gap: 10px;
     }
+    .logo {
+        font-size: 16px;
+    }
+    .header-icons {
+        gap: 8px;
+    }
+    .icon-btn svg {
+        width: 18px;
+        height: 18px;
+    }
     .hero-content h1 { font-size: 28px; }
-    .hero-content p { font-size: 16px; margin-bottom: 30px; }
+    .hero-content p { font-size: 14px; margin-bottom: 20px; }
     .product-grid { 
         grid-template-columns: 1fr; 
-        gap: 20px;
-        padding: 0 10px;
+        gap: 15px;
+        padding: 0 5px;
     }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-brand { text-align: center; }
     .spec-container { grid-template-columns: 1fr; }
     
-    /* Ensure no overlap in header */
-    .main-header {
-        height: 70px;
+    .profile-content {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+        margin: 30px auto;
     }
 }
 /* Auth Pages */
