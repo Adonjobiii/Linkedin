@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} | Diecast Elite</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="product-page">
+    <div class="liquid-bg">
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+    <header class="main-header">
+        <div class="nav-container">
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="/" class="logo">DIECAST<span>ELITE</span></a>
+            <nav class="nav-links">
+                <a href="/shop">SHOP MODELS</a>
+            </nav>
+            <div class="header-icons">
+                <button class="icon-btn search-btn" id="search-open">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <a href="/profile" class="icon-btn account-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <button class="icon-btn cart-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+            <a href="/logout" class="logout-btn" style="margin-left: 10px; font-size: 12px; font-weight: 800; color: var(--primary-red); text-decoration: none;">LOGOUT</a>
+        </div>
+    </header>
+
+    <main class="product-container">
+        <div class="product-gallery">
+            <div class="main-image-viewport">
+                <img src="{{ url_for('static', filename='assets/' + product.image) }}" alt="{{ product.name }}" id="main-product-img">
+            </div>
+            <div class="thumbnail-strip">
+                {% for img in product.gallery %}
+                <div class="thumb {% if loop.first %}active{% endif %}" data-src="{{ url_for('static', filename='assets/' + img) }}">
+                    <img src="{{ url_for('static', filename='assets/' + img) }}" alt="Angle {{ loop.index }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="product-essentials">
+            <div class="breadcrumb">
+                <a href="/">HOME</a> / <a href="/shop">{{ product.category|upper }}</a> / {{ product.name|upper }}
+            </div>
+            <h1>{{ product.name }}</h1>
+            <p class="scale-info">{{ product.scale }} SCALE REPLICA</p>
+            <div class="price-box">
+                <span class="currency">₹</span>
+                <span class="amount">{{ "{:,.0f}".format(product.price) }}</span>
+            </div>
+            
+            <div class="detail-tabs">
+                <div class="tab-header">
+                    <button class="tab-btn active" onclick="openTab(event, 'description')">DESCRIPTION</button>
+                    <button class="tab-btn" onclick="openTab(event, 'specs')">SPECIFICATIONS</button>
+                </div>
+                <div id="description" class="tab-content active">
+                    <p>{{ product.description }}</p>
+                </div>
+                <div id="specs" class="tab-content">
+                    <ul class="spec-list">
+                        <li><strong>Material:</strong> High-Grade Zinc Alloy</li>
+                        <li><strong>Features:</strong> {{ product.specs }}</li>
+                        <li><strong>Scale:</strong> {{ product.scale }}</li>
+                        <li><strong>Category:</strong> {{ product.category }}</li>
+                        <li><strong>Authenticity:</strong> Licensed Replica</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="purchase-actions">
+                <button class="add-to-cart-btn" data-product-id="{{ product.id }}">ADD TO CART</button>
+                <button class="btn btn-outline collect-btn" data-product-id="{{ product.id }}">ADD TO COLLECTION</button>
+            </div>
+        </div>
+    </main>
+
+    <section class="suggestions container">
+        <h2>YOU MAY ALSO LIKE</h2>
+        <div class="product-grid">
+            {% for suggest in suggestions %}
+            <div class="car-card" onclick="window.location.href='/product/{{ suggest.id }}'">
+                <div class="car-image">
+                    <img src="{{ url_for('static', filename='assets/' + suggest.image) }}" alt="{{ suggest.name }}">
+                    <span class="scale-tag">{{ suggest.scale }}</span>
+                </div>
+                <div class="car-info">
+                    <h3>{{ suggest.name }}</h3>
+                    <p class="price">₹{{ "{:,.0f}".format(suggest.price) }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script>
+        // Gallery logic
+        const thumbs = document.querySelectorAll('.thumb');
+        const mainImg = document.getElementById('main-product-img');
+
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const src = this.dataset.src;
+                mainImg.src = src;
+                thumbs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function changeQty(delta) {
+            const qtyInput = document.getElementById('qty');
+            let val = parseInt(qtyInput.value) + delta;
+            if (val < 1) val = 1;
+            qtyInput.value = val;
+        }
+    </script>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="/">HOME</a>
+        <a href="/shop">ALL MODELS</a>
+        <a href="/profile">ACCOUNT</a>
+        <a href="/logout" class="logout-btn">LOGOUT</a>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="drawer-header">
+            <h2>YOUR CART</h2>
+            <button class="close-drawer">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items injected by JS -->
+        </div>
+        <div class="drawer-footer">
+            <div class="cart-total">
+                <span>TOTAL</span>
+                <span id="cart-total-amount">₹0</span>
+            </div>
+            <button class="btn btn-primary checkout-btn">PROCEED TO CHECKOUT</button>
+        </div>
+    </div>
+
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-container">
+            <div class="search-header">
+                <input type="text" id="search-input" placeholder="Search for your dream car..." autofocus>
+                <button class="search-close" id="search-close">&times;</button>
+            </div>
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

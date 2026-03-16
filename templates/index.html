@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diecast Elite | Premium Collectibles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAAAABclJJCAAAAAXNSR0IArs4c6QAAAAnRefueAAAABmJLR0QA/wD/AP+gvaeTAAAADklEQVQImWNgGAWggwAAAH4ABf7+qXoAAAAASUVORK5CYII=">
+</head>
+<body class="home-page">
+    <div class="announcement-bar">
+        <div class="marquee">
+            <span>LIMITED EDITION ARRIVALS • GLOBAL SHIPPING AVAILABLE • EXCLUSIVE MODELS • 15% OFF ON FIRST PURCHASE • </span>
+            <span>LIMITED EDITION ARRIVALS • GLOBAL SHIPPING AVAILABLE • EXCLUSIVE MODELS • 15% OFF ON FIRST PURCHASE • </span>
+        </div>
+    </div>
+    <div class="liquid-bg">
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+    <header class="main-header">
+        <div class="nav-container">
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="/" class="logo">DIECAST<span>ELITE</span></a>
+            <ul class="nav-links">
+                <li><a href="/shop">SHOP MODELS</a></li>
+                <li><a href="/profile">TRACK ORDER</a></li>
+                <li><a href="/shop">STORES</a></li>
+                <li><a href="/profile">REWARDS</a></li>
+            </ul>
+            <div class="header-icons">
+                <button class="icon-btn search-btn" id="search-open" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <a href="/profile" class="icon-btn account-btn" aria-label="Account">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <button class="icon-btn cart-btn" aria-label="Cart">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Sidebar -->
+        <div class="mobile-nav" id="mobile-nav">
+            <button class="close-menu" id="close-menu">×</button>
+            <div class="mobile-links">
+                <a href="#">SHOP ALL</a>
+                <a href="#">1:18 SCALE</a>
+                <a href="#">1:24 SCALE</a>
+                <a href="#">TRACK ORDER</a>
+                <a href="#">STORES</a>
+                <a href="#">REWARDS</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="tag">NEW ARRIVALS</span>
+                <h1>PRECISION AT EVERY SCALE</h1>
+                <p>Curated 1:18 and 1:24 masterworks for the discerning collector.</p>
+                <button class="btn btn-primary" onclick="window.location.href='/shop'">SHOP NEW ARRIVALS</button>
+            </div>
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='assets/hero.png') }}" alt="Hero Diecast Car">
+                <div class="hero-stats">
+                    <div class="stat-pill"><span>SCALE</span><strong>1:18</strong></div>
+                    <div class="stat-pill"><span>PARTS</span><strong>800+</strong></div>
+                    <div class="stat-pill"><span>WEIGHT</span><strong>1.2KG</strong></div>
+                </div>
+            </div>
+            <div class="hero-sidebar">
+                <div class="sidebar-item">
+                    <span>ENGINEERING</span>
+                    <p>Advanced die-cast molding with 0.001mm tolerance.</p>
+                </div>
+                <div class="sidebar-item">
+                    <span>FINISH</span>
+                    <p>Authentic automotive-grade paint application.</p>
+                </div>
+                <div class="sidebar-item">
+                    <span>COLLECTIBILITY</span>
+                    <p>Individually numbered limited edition releases.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="spec-highlights">
+            <div class="spec-container">
+                <div class="spec-item">
+                    <div class="spec-icon">🛡️</div>
+                    <p>Zinc Alloy Body</p>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon">🚪</div>
+                    <p>Opening Parts</p>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon">🎨</div>
+                    <p>Electrostatic Paint</p>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon">🔍</div>
+                    <p>Intricate Detail</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-discography">
+            <div class="section-header">
+                <h2>OUR MASTERWORKS</h2>
+                <div class="filter-btns">
+                    <button class="filter-btn active">ALL</button>
+                    <button class="filter-btn">1:18</button>
+                    <button class="filter-btn">1:24</button>
+                    <button class="filter-btn">1:64</button>
+                </div>
+                <button class="view-all" onclick="window.location.href='/shop'">VIEW ALL</button>
+            </div>
+            <div class="product-grid">
+                {% for product in products %}
+                <div class="car-card reveal-item" data-scale="{{ product.scale }}" onclick="window.location.href='/product/{{ product.id }}'">
+                    <div class="car-image">
+                        <img src="{{ url_for('static', filename='assets/' + product.image) }}" alt="{{ product.name }}">
+                        <span class="scale-tag">{{ product.scale }}</span>
+                    </div>
+                    <div class="car-info">
+                        <h3>{{ product.name }}</h3>
+                        <p class="category">{{ product.category }}</p>
+                        <p class="specs">{{ product.specs }}</p>
+                        <div class="card-footer">
+                            <p class="price">₹{{ "{:,.0f}".format(product.price) }}</p>
+                            <button class="add-to-collection-btn" data-product-id="{{ product.id }}">
+                                <small>ADD TO COLLECTION</small>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="heritage-section reveal-item" style="padding: 100px 5%; background: rgba(255, 62, 62, 0.02);">
+            <div class="section-title">
+                <h2>DIECAST HERITAGE</h2>
+                <p>A century of precision engineering and collecting passion.</p>
+            </div>
+            <div class="heritage-grid">
+                <div class="heritage-image">
+                    <img src="{{ url_for('static', filename='assets/hero.png') }}" alt="Vintage Diecast">
+                    <div class="image-overlay-text">SINCE 1901</div>
+                </div>
+                <div class="heritage-content-grid">
+                    <div class="heritage-card">
+                        <h3>The Evolution</h3>
+                        <p>The art of diecasting began in the early 20th century, initially as a way to produce complex metal parts for machinery. By the 1930s, brands like Dinky Toys revolutionized the world.</p>
+                    </div>
+                    <div class="heritage-card">
+                        <h3>Modern Mastery</h3>
+                        <p>Today, diecast collecting has evolved into a pursuit of realism. The 1:18 scale models feature hundreds of individual parts and authentic automotive-grade finishes.</p>
+                    </div>
+                    <div class="heritage-card">
+                        <h3>Authentic Detail</h3>
+                        <p>Every model we showcase is a masterpiece of precision engineering, capturing the soul of iconic vehicles in stunning miniature form.</p>
+                    </div>
+                    <div class="heritage-card primary">
+                        <a href="/shop" class="btn btn-primary">VIEW HERITAGE COLLECTION</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="brand-elevation">
+            <div class="section-title" style="text-align: center; margin-bottom: 30px;">
+                <h2 style="font-size: 1.2rem; letter-spacing: 4px; color: var(--text-gray);">OFFICIAL MASTERWORKS PARTNERS</h2>
+            </div>
+            <div class="brand-marquee-container">
+                <div class="brand-marquee-content">
+                    <img src="{{ url_for('static', filename='assets/logo-ferrari.png') }}" alt="Ferrari">
+                    <img src="{{ url_for('static', filename='assets/logo-lambo.png') }}" alt="Lamborghini">
+                    <img src="{{ url_for('static', filename='assets/logo-porsche.png') }}" alt="Porsche">
+                    <img src="{{ url_for('static', filename='assets/logo-bugatti.png') }}" alt="Bugatti">
+                    <!-- Repeat for seamless scrolling -->
+                    <img src="{{ url_for('static', filename='assets/logo-ferrari.png') }}" alt="Ferrari">
+                    <img src="{{ url_for('static', filename='assets/logo-lambo.png') }}" alt="Lamborghini">
+                    <img src="{{ url_for('static', filename='assets/logo-porsche.png') }}" alt="Porsche">
+                    <img src="{{ url_for('static', filename='assets/logo-bugatti.png') }}" alt="Bugatti">
+                    <!-- Repeat again -->
+                    <img src="{{ url_for('static', filename='assets/logo-ferrari.png') }}" alt="Ferrari">
+                    <img src="{{ url_for('static', filename='assets/logo-lambo.png') }}" alt="Lamborghini">
+                    <img src="{{ url_for('static', filename='assets/logo-porsche.png') }}" alt="Porsche">
+                    <img src="{{ url_for('static', filename='assets/logo-bugatti.png') }}" alt="Bugatti">
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="cat-card red-bg fade-in">
+                <div class="cat-content">
+                    <h2>1:18 SCALE</h2>
+                    <p>The ultimate detail for serious collectors.</p>
+                    <button class="shop-cat" onclick="window.location.href='/shop?scale=1:18'">SHOP 1:18</button>
+                </div>
+            </div>
+            <div class="cat-card black-bg fade-in">
+                <div class="cat-content">
+                    <h2>1:24 SCALE</h2>
+                    <p>The perfect balance of size and intricacy.</p>
+                    <button class="shop-cat" onclick="window.location.href='/shop?scale=1:24'">SHOP 1:24</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="/" class="logo">DIECAST<span>ELITE</span></a>
+                <p>Setting the standard in precision diecast collection.</p>
+                <div class="footer-history" style="margin-top: 20px; font-size: 12px; color: var(--text-gray); line-height: 1.6;">
+                    <strong>DIECAST HERITAGE</strong><br>
+                    The art of diecasting dates back to the early 20th century, evolving from simple lead toys to the hyper-detailed 1:18 scale masterpieces of today. At Diecast Elite, we celebrate this history of precision engineering.
+                </div>
+                <div class="social-links">
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>QUICK LINKS</h3>
+                <ul>
+                    <li><a href="/shop">About Us</a></li>
+                    <li><a href="/shop">Contact</a></li>
+                    <li><a href="/profile">Shipping Policy</a></li>
+                    <li><a href="/profile">Corporate Gifting</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>CONTACT US</h3>
+                <p>support@diecastelite.com</p>
+                <p>+91 98765 43210</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Diecast Elite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="drawer-header">
+            <h2>YOUR CART</h2>
+            <button class="close-drawer">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items injected by JS -->
+        </div>
+        <div class="drawer-footer">
+            <div class="cart-total">
+                <span>TOTAL</span>
+                <span id="cart-total-amount">₹0</span>
+            </div>
+            <button class="btn btn-primary checkout-btn">PROCEED TO CHECKOUT</button>
+        </div>
+    </div>
+
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-container">
+            <div class="search-header">
+                <input type="text" id="search-input" placeholder="Search for your dream car..." autofocus>
+                <button class="search-close" id="search-close">&times;</button>
+            </div>
+            <div class="search-results" id="search-results">
+                <!-- Results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
